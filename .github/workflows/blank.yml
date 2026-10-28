@@ -1,42 +1,8 @@
-
-
-
-        
-name: CI Pipeline Java Code
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  pull-requests: read
-
+name: helloworld
+on: workflow_dispatch
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
-
-      - name: Set up Java
-        uses: actions/setup-java@v5
-        with:
-          distribution: temurin
-          java-version: '17'
-          cache: maven
-
-      - name: Build and Analyze
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: >
-          mvn -B verify
-          org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
-          -Dsonar.projectKey=YOUR_PROJECT_KEY
-          -Dsonar.organization=YOUR_ORGANIZATION_KEY
+  hello:
+     runs-on: ubuntu-latest
+     steps:
+       - name: hello step
+         run:  echo "git-rep"
